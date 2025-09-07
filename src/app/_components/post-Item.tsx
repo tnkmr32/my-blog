@@ -8,21 +8,21 @@ type Props = {
 
 const PostItem = ({ title, slug, coverImage }: Props) => {
   return (
-    <div className="text-base pb-5">
-      <div className="w-fit">
+    <div className="pb-5">
+      <div className="w-fit mx-auto">
         <Link href={`/posts/${slug}`}>
           <div className="overflow-hidden">
-            <div className="max-w-full h-auto transition-transform duration-300 ease-linear hover:scale-102">
+            <div className="transition-transform duration-300 ease-linear hover:scale-102">
               <img
                 src={coverImage.url}
                 alt={title}
-                className="object-cover w-full h-full"
+                className="object-contain max-h-[660px]"
               />
             </div>
           </div>
         </Link>
         <div className="w-auto flex flex-row justify-end">
-          <Link href={`/posts/${slug}`} className="hover:underline">
+          <Link href={`/posts/${slug}`} className="text-base hover:underline">
             {title}
           </Link>
         </div>
