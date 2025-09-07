@@ -1,30 +1,24 @@
-import Container from "@/app/_components/container";
-import { HeroPost } from "@/app/_components/hero-post";
-import { Intro } from "@/app/_components/intro";
-import { MoreStories } from "@/app/_components/more-stories";
 import { getAllPosts } from "@/lib/api";
+import PostItem from "./_components/post-Item";
 
 export default function Index() {
   const allPosts = getAllPosts();
-
-  const heroPost = allPosts[0];
-
-  const morePosts = allPosts.slice(1);
+  
 
   return (
     <main>
-      <Container>
-        <Intro />
-        <HeroPost
-          title={heroPost.title}
-          coverImage={heroPost.coverImage}
-          date={heroPost.date}
-          author={heroPost.author}
-          slug={heroPost.slug}
-          excerpt={heroPost.excerpt}
-        />
-        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-      </Container>
+      <div className="container px-4 mx-auto">
+        <div className="py-2">
+          <h2 className="text-2xl">
+            Works
+          </h2>
+          <div>
+            {allPosts.map((item, index) => (
+              <PostItem key={index} title={item.title} slug={item.slug} coverImage={item.coverImage} />
+            ))}
+          </div>
+        </div>
+      </div>
     </main>
   );
 }

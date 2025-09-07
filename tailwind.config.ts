@@ -8,7 +8,15 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+    },
     extend: {
+      scale: {
+        102: "1.02",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
