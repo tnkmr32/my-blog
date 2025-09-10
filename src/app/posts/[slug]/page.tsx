@@ -4,6 +4,7 @@ import { getAllPosts, getPostBySlug } from "@/lib/api";
 import { SITE_NAME } from "@/lib/constants";
 import markdownToHtml from "@/lib/markdownToHtml";
 import { PostBody } from "@/app/_components/post-body";
+import FadeTransition from "@/app/_components/fade-transition";
 
 export default async function Post(props: Params) {
   const params = await props.params;
@@ -16,19 +17,28 @@ export default async function Post(props: Params) {
   const content = await markdownToHtml(post.content || "");
 
   return (
-    <main>
-      <div className="container px-4 mx-auto">
-        <div className="py-2">
-          <article className="mb-32">
-            <h1 className="text-xl">{post.title}</h1>
-            <p className="text-gray-500 text-sm mb-4">
-              {post.date ? new Date(post.date).toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit" }).replace("/", "/") : ""}
-            </p>
-            <PostBody content={content} />
-          </article>
+    <FadeTransition>
+      <main>
+        <div className="container px-4 mx-auto">
+          <div className="py-2">
+            <article className="mb-32">
+              <h1 className="text-xl">{post.title}</h1>
+              <p className="text-gray-500 text-sm mb-4">
+                {post.date
+                  ? new Date(post.date)
+                      .toLocaleDateString("ja-JP", {
+                        year: "numeric",
+                        month: "2-digit",
+                      })
+                      .replace("/", "/")
+                  : ""}
+              </p>
+              <PostBody content={content} />
+            </article>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </FadeTransition>
   );
 }
 
