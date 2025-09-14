@@ -8,6 +8,13 @@ import Header from "./_components/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
+import { Noto_Sans_JP } from "next/font/google";
+
+const notoSansJP = Noto_Sans_JP({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
 export const metadata: Metadata = {
   title: `${SITE_NAME}`,
   description: `Toru Nakamura's blog about various topics.`,

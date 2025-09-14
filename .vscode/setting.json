@@ -3,5 +3,7 @@
     "*.css": "postcss"
   },
   "css.validate": false,
-  "tailwindCSS.validate": true
+  "tailwindCSS.validate": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
