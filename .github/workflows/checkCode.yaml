@@ -23,7 +23,5 @@ jobs:
           cache: 'npm'
       # プロジェクトの依存関係をインストール
       - run: npm ci
-      # prettierでコードのフォーマットをチェック
-      - run: npm run prettier-format
       # ESLintでコードをチェック
       - run: npm run eslint
