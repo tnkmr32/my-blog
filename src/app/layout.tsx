@@ -1,21 +1,22 @@
-import Footer from "@/app/_components/footer";
-import { HOME_OG_IMAGE_URL, SITE_NAME } from "@/lib/constants";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import cn from "classnames";
-import "./globals.css";
-import Header from "./_components/header";
+import Footer from '@/app/_components/footer';
+import {HOME_OG_IMAGE_URL, SITE_NAME, SITE_URL} from '@/lib/constants';
+import type {Metadata} from 'next';
+import {Inter} from 'next/font/google';
+import cn from 'classnames';
+import './globals.css';
+import Header from './_components/header';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({subsets: ['latin']});
 
-import { Noto_Sans_JP } from "next/font/google";
+// import { Noto_Sans_JP } from "next/font/google";
 
-const notoSansJP = Noto_Sans_JP({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
+// const notoSansJP = Noto_Sans_JP({
+//   subsets: ["latin"],
+//   weight: ["400", "700"],
+// });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: `${SITE_NAME}`,
   description: `Toru Nakamura's blog about various topics.`,
   openGraph: {
@@ -64,8 +65,10 @@ export default function RootLayout({
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       </head>
       <body
-        className={cn(inter.className, "dark:bg-slate-900 dark:text-slate-400")}
-      >
+        className={cn(
+          inter.className,
+          'dark:bg-slate-900 dark:text-slate-400',
+        )}>
         <Header />
         <div className="min-h-screen">{children}</div>
         <Footer />
