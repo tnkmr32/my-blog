@@ -1,12 +1,12 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 type Props = {
   title: string;
   slug: string;
-  coverImage: { url: string };
+  coverImage: {url: string};
 };
 
-const PostItem = ({ title, slug, coverImage }: Props) => {
+const PostItem = ({title, slug, coverImage}: Props) => {
   return (
     <div className="pb-5">
       <div className="w-fit mx-auto">
