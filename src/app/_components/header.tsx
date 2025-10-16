@@ -1,6 +1,6 @@
-import { SITE_NAME } from "@/lib/constants";
-import Link from "next/link";
-import Container from "./container";
+import Link from 'next/link';
+import Container from './container';
+import {SITE_NAME} from '@/lib/constants';
 
 const Header = () => {
   return (

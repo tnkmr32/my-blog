@@ -22,6 +22,8 @@
 npm run dev
 ```
 
+`http://localhost:3000/my-blog`にアクセスすることでサイトが表示可能。
+
 # 🚀 公開方法
 
 mainブランチに変更があると`GitHub Actions`で自動ビルド・デプロイされます。

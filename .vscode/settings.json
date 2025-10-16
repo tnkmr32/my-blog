@@ -1,0 +1,19 @@
+{
+  "files.associations": {
+    "*.css": "postcss"
+  },
+  "css.validate": false,
+  "tailwindCSS.validate": true,
+  "eslint.useFlatConfig": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "typescript.autoClosingTags": true,
+  "editor.linkedEditing": true,
+  "auto-rename-tag.activationOnLanguage": [
+    "typescriptreact",
+  ]
+}

@@ -1,5 +1,5 @@
-import Container from "@/app/_components/container";
-import { GITHUB_REPO_URL } from "@/lib/constants";
+import Container from '@/app/_components/container';
+import {GITHUB_REPO_URL} from '@/lib/constants';
 
 export function Footer() {
   return (
@@ -9,8 +9,7 @@ export function Footer() {
           <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
             <a
               href={`${GITHUB_REPO_URL}`}
-              className="mx-3 font-bold hover:underline"
-            >
+              className="mx-3 font-bold hover:underline">
               GitHub
             </a>
           </div>
