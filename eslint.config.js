@@ -55,7 +55,6 @@ export default defineConfig([
       },
     },
     rules: {
-      // TODO：ルール設定の精査
       'react/jsx-uses-react': 'error',
       'react/jsx-uses-vars': 'error',
     },
