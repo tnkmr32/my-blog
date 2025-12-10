@@ -1,0 +1,27 @@
+# Actionの名前
+name: Check Code
+
+on:
+  # Pull Request時
+  pull_request:
+    # 対象のブランチを指定
+    branches: ['main']
+
+jobs:
+  Code-Check:
+    runs-on: ubuntu-latest
+    steps:
+      # GitHubリポジトリのコードをチェックアウト
+      - uses: actions/checkout@v3
+      # Node.js v18をセットアップ
+      - name: Use Node.js v18
+        # npmのキャッシュを有効
+        # 以前にインストールしたnpmパッケージを再利用でき、ビルド時間を短縮
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+      # プロジェクトの依存関係をインストール
+      - run: npm ci
+      # ESLintでコードをチェック
+      - run: npm run eslint

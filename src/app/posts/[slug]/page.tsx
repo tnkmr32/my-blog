@@ -1,9 +1,10 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { getAllPosts, getPostBySlug } from "@/lib/api";
-import { SITE_NAME } from "@/lib/constants";
-import markdownToHtml from "@/lib/markdownToHtml";
-import { PostBody } from "@/app/_components/post-body";
+import {Metadata} from 'next';
+import {notFound} from 'next/navigation';
+import FadeTransition from '@/app/_components/fade-transition';
+import {PostBody} from '@/app/_components/post-body';
+import {getAllPosts, getPostBySlug} from '@/lib/api';
+import {SITE_NAME} from '@/lib/constants';
+import markdownToHtml from '@/lib/markdownToHtml';
 
 export default async function Post(props: Params) {
   const params = await props.params;
@@ -13,22 +14,31 @@ export default async function Post(props: Params) {
     return notFound();
   }
 
-  const content = await markdownToHtml(post.content || "");
+  const content = await markdownToHtml(post.content || '');
 
   return (
-    <main>
-      <div className="container px-4 mx-auto">
-        <div className="py-2">
-          <article className="mb-32">
-            <h1 className="text-xl">{post.title}</h1>
-            <p className="text-gray-500 text-sm mb-4">
-              {post.date ? new Date(post.date).toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit" }).replace("/", "/") : ""}
-            </p>
-            <PostBody content={content} />
-          </article>
+    <FadeTransition>
+      <main>
+        <div className="container px-4 mx-auto">
+          <div className="py-2">
+            <article className="mb-32">
+              <h1 className="text-xl">{post.title}</h1>
+              <p className="text-gray-500 text-sm mb-4">
+                {post.date
+                  ? new Date(post.date)
+                      .toLocaleDateString('ja-JP', {
+                        year: 'numeric',
+                        month: '2-digit',
+                      })
+                      .replace('/', '/')
+                  : ''}
+              </p>
+              <PostBody content={content} />
+            </article>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </FadeTransition>
   );
 }
 
@@ -57,10 +67,10 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
   };
 }
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   const posts = getAllPosts();
 
-  return posts.map((post) => ({
+  return posts.map(post => ({
     slug: post.slug,
   }));
 }
