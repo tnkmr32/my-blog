@@ -22,7 +22,7 @@ export default async function Post(props: Params) {
         <div className="container px-4 mx-auto">
           <div className="py-2">
             <article className="mb-32">
-              <h1 className="text-xl">{post.title}</h1>
+              <h1 className="text-6xl">{post.title}</h1>
               <p className="text-gray-500 text-sm mb-4">
                 {post.date
                   ? new Date(post.date)
