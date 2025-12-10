@@ -33,6 +33,24 @@ export const ImageLightbox = (props: ImageLightboxProps) => {
   };
 
   const showNavigation = props.totalImages > 1;
+  const isFirstImage = props.currentIndex === 0;
+  const isLastImage = props.currentIndex === props.totalImages - 1;
+  const canGoPrevious = showNavigation && !isFirstImage;
+  const canGoNext = showNavigation && !isLastImage;
+
+  const handleImageClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+    if (!showNavigation) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const x = event.clientX - rect.left;
+    // 画像の左半分をクリックしたら前へ、右半分をクリックしたら次へ
+    if (x < width / 2 && canGoPrevious) {
+      props.onPrevious();
+    } else if (x >= width / 2 && canGoNext) {
+      props.onNext();
+    }
+  };
 
   return (
     <div
@@ -69,62 +87,68 @@ export const ImageLightbox = (props: ImageLightboxProps) => {
 
         {/* 画像と前後ボタン */}
         <div className="flex items-center gap-4">
-          {/* 前へボタン */}
-          {showNavigation && (
-            <button
-              onClick={e => {
-                e.stopPropagation();
-                props.onPrevious();
-              }}
-              aria-label="前の画像"
-              className="rounded-full bg-black/10 p-2 text-black transition-colors hover:bg-black/20">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="h-6 w-6">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-              </svg>
-            </button>
-          )}
+          {/* 前へボタンの領域 */}
+          <div className="w-10">
+            {canGoPrevious && (
+              <button
+                onClick={e => {
+                  e.stopPropagation();
+                  props.onPrevious();
+                }}
+                aria-label="前の画像"
+                className="rounded-full bg-black/10 p-2 text-black transition-colors hover:bg-black/20">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="h-6 w-6">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
+              </button>
+            )}
+          </div>
 
           {/* 画像 */}
-          <img
-            src={props.image.src}
-            alt={props.image.alt}
-            className="max-h-[70vh] max-w-[70vw] object-contain transition-opacity duration-300 ease-in-out"
-          />
+          <div className="relative cursor-pointer" onClick={handleImageClick}>
+            <img
+              src={props.image.src}
+              alt={props.image.alt}
+              className="max-h-[80vh] max-w-[80vw] object-contain transition-opacity duration-300 ease-in-out"
+            />
+          </div>
 
-          {/* 次へボタン */}
-          {showNavigation && (
-            <button
-              onClick={e => {
-                e.stopPropagation();
-                props.onNext();
-              }}
-              aria-label="次の画像"
-              className="rounded-full bg-black/10 p-2 text-black transition-colors hover:bg-black/20">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="h-6 w-6">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                />
-              </svg>
-            </button>
-          )}
+          {/* 次へボタンの領域 */}
+          <div className="w-10">
+            {canGoNext && (
+              <button
+                onClick={e => {
+                  e.stopPropagation();
+                  props.onNext();
+                }}
+                aria-label="次の画像"
+                className="rounded-full bg-black/10 p-2 text-black transition-colors hover:bg-black/20">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="h-6 w-6">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                  />
+                </svg>
+              </button>
+            )}
+          </div>
         </div>
 
         {/* 画像カウンター */}
