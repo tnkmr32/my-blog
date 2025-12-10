@@ -17,7 +17,7 @@ export const PostImage = (props: PostImageProps) => {
       src={props.src}
       alt={props.alt}
       onClick={handleClick}
-      className="cursor-pointer transition-opacity hover:opacity-80"
+      className="cursor-pointer"
     />
   );
 };
