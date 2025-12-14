@@ -8,7 +8,6 @@ export default function Index() {
     <main>
       <div className="container px-4 mx-auto">
         <div className="py-2">
-          <h2 className="text-xl md:text-2xl">Works</h2>
           <div>
             {allPosts.map((item, index) => (
               <PostItem
