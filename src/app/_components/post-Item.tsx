@@ -22,7 +22,7 @@ const PostItem = ({title, slug, coverImage}: Props) => {
           </div>
         </Link>
         <div className="w-auto flex flex-row justify-end">
-          <Link href={`/posts/${slug}`} className="text-base hover:underline">
+          <Link href={`/posts/${slug}`} className="text-xl hover:underline">
             {title}
           </Link>
         </div>
